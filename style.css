@@ -23,19 +23,6 @@ body{
 button{font-family:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
 svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;display:block}
 
-.nojs,.boot-error{
-  position:fixed;inset:0;z-index:9999;
-  display:flex;align-items:center;justify-content:center;
-  padding:32px 26px;
-  background:#EDE9E0;
-  color:#1B1A18;
-  text-align:center;
-  font-size:13px;line-height:2.1;
-}
-.boot-error{background:rgba(18,17,15,.94);color:#F6F0E4}
-.boot-error[hidden]{display:none}
-.nojs b,.boot-error b{font-size:15px;letter-spacing:.06em}
-
 #app{
   height:100vh;
   height:100dvh;

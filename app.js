@@ -59,7 +59,7 @@
   var fw = 0, fh = 0;
   var s = 1, tx = 0, ty = 0;
   var minS = 1, maxS = 1, coverS = 1;
-  var inited = false, mapReady = false, bootWatch = null;
+  var inited = false, mapReady = false;
   var animId = null;
   var activeSpot = null;
   var calloutToken = 0;
@@ -432,8 +432,6 @@
 
   function bootMap() {
     mapReady = true;
-    if (bootWatch) { clearTimeout(bootWatch); bootWatch = null; }
-    var be = document.getElementById('bootError'); if (be) be.hidden = true;
     measure();
     initView();
     hintTimer = setTimeout(hideHint, 6500);
@@ -446,13 +444,9 @@
   } else {
     mapImg.addEventListener('load', bootMap);
     mapImg.addEventListener('error', function () {
-      mapLoading.innerHTML = '<em>平面图加载失败</em>';
+      mapLoading.classList.add('hide');
     });
   }
-
-  bootWatch = setTimeout(function () {
-    if (!mapReady) { var be = document.getElementById('bootError'); if (be) be.hidden = false; }
-  }, 10000);
 
   var ro = new ResizeObserver(function () { onResize(); });
   ro.observe(frame);
