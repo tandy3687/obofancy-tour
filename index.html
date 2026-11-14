@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#E9E5DC">
+<title>天湖龙镜 · 33座104房 · 庭院全景导览</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<noscript>
+  <div class="nojs">
+    <div>
+      <b>此页面需要 JavaScript</b><br>
+      请把整个文件夹部署到网站后，用 Safari 打开链接。<br>
+      不要直接用 iOS“文件”应用预览 HTML。
+    </div>
+  </div>
+</noscript>
+
+<div class="boot-error" id="bootError" hidden>
+  <div>
+    <b>平面图未能加载</b><br>
+    请把整个文件夹部署到网站后，用 Safari 打开链接。<br>
+    直接预览本地 HTML 文件时，iOS 不会执行页面脚本。
+  </div>
+</div>
+
+<div id="app">
+  <header class="topbar">
+    <div class="brand">
+      <h1>天湖龙镜</h1>
+      <p>33座104房 · 庭院全景导览</p>
+    </div>
+    <div class="logo">广域设计</div>
+  </header>
+  <div class="rule"></div>
+
+  <main class="stage">
+    <section class="frame" id="frame" aria-label="庭院平面图">
+      <div class="frame-bg" id="frameBg"></div>
+      <div class="map-loading" id="mapLoading"><span class="spinner"></span><em>平面图载入中</em></div>
+      <div class="map-layer" id="mapLayer">
+        <img id="mapImg" alt="天湖龙镜庭院平面图" draggable="false">
+      </div>
+
+      <div class="markers" id="markerLayer"></div>
+
+      <div class="hint" id="hint">拖动查看 · 双指缩放 · 点击地标</div>
+
+      <div class="controls" id="controls">
+        <button class="ctrl" id="zoomIn" aria-label="放大">
+          <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <button class="ctrl" id="zoomOut" aria-label="缩小">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg>
+        </button>
+        <button class="ctrl" id="fitBtn" aria-label="查看全图">
+          <svg viewBox="0 0 24 24"><path d="M8 4H4v4M16 4h4v4M20 16v4h-4M4 16v4h4"/></svg>
+        </button>
+        <button class="ctrl" id="resetBtn" aria-label="回到初始视角">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+        </button>
+      </div>
+
+      <div class="callout-scrim" id="calloutScrim" hidden></div>
+
+      <div class="callout" id="callout" role="dialog" aria-modal="false" hidden>
+        <button class="callout-close" id="calloutClose" aria-label="关闭">
+          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+        <div class="callout-body">
+          <div class="thumb"><img id="calloutImg" alt=""></div>
+          <div class="info">
+            <div class="kicker" id="calloutKicker">A · 全景点位</div>
+            <div class="name" id="calloutName">茶室</div>
+            <div class="desc" id="calloutDesc"></div>
+          </div>
+        </div>
+        <button class="enter" id="enterBtn">
+          <span>进入 720° 全景</span>
+          <svg viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="viewer" id="viewer" hidden aria-label="720度全景">
+  <canvas id="panoCanvas"></canvas>
+  <div class="v-shade top"></div>
+  <div class="v-shade bottom"></div>
+
+  <div class="v-top">
+    <button class="v-back" id="backBtn" aria-label="返回平面图">
+      <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <div class="v-title">
+      <b id="vName">茶室</b>
+      <span id="vSub">天湖龙镜 · 庭院</span>
+    </div>
+  </div>
+  <button class="v-reset" id="vReset" aria-label="重置视角">
+    <svg viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 2.3 6.7M4 4v6h6"/></svg>
+  </button>
+
+  <div class="v-hint" id="vHint">拖动环视 · 双指缩放</div>
+
+  <button class="mini" id="miniMap" type="button" aria-label="返回平面图">
+    <img id="miniImg" alt="">
+    <span class="mini-ring"></span>
+    <span class="mini-dot"></span>
+  </button>
+
+  <div class="render-layer" id="renderLayer" hidden>
+    <div class="render-stage"><img id="renderImg" alt=""></div>
+  </div>
+
+  <div class="thumb-strip" id="thumbStrip" role="group" aria-label="效果图"></div>
+
+  <div class="v-loading" id="vLoading">
+    <span class="spinner light"></span>
+    <em>正在进入全景</em>
+  </div>
+</div>
+
+<script src="three.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
